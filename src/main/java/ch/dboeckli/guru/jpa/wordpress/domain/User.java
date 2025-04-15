@@ -76,4 +76,8 @@ public class User {
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private Set<UserMeta> userMetaSet;
+
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private Set<Comment> comments;
 }

@@ -28,10 +28,10 @@ CREATE INDEX IF NOT EXISTS meta_key ON wp_commentmeta (meta_key);
 
 -- Table structure for wp_comments
 CREATE TABLE IF NOT EXISTS wp_comments (
-                                           comment_ID BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                           comment_post_ID BIGINT NOT NULL DEFAULT 0,
-                                           comment_author CLOB NOT NULL,
-                                           comment_author_email VARCHAR(100) NOT NULL DEFAULT '',
+    comment_ID BIGINT AUTO_INCREMENT PRIMARY KEY,
+    comment_post_ID BIGINT NOT NULL DEFAULT 0,
+    comment_author VARCHAR(255) NOT NULL,  -- Changed from CLOB to VARCHAR to mimic tinytext
+    comment_author_email VARCHAR(100) NOT NULL DEFAULT '',
     comment_author_url VARCHAR(200) NOT NULL DEFAULT '',
     comment_author_IP VARCHAR(100) NOT NULL DEFAULT '',
     comment_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
