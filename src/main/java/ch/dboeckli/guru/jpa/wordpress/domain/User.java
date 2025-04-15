@@ -10,6 +10,7 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.URL;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "wp_users", indexes = {
@@ -70,4 +71,9 @@ public class User {
     @NotNull
     @Size(max = 255)
     private String displayName;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private Set<UserMeta> userMetaSet;
 }
