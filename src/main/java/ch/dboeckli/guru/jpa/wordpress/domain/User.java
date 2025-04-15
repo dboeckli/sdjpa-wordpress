@@ -41,6 +41,7 @@ public class User {
     @Column(name = "user_status")
     private Integer status;
 
-    @Column(name = "display_name")
+    @Column(name = "display_name", nullable = false)
+    // or @Basic(optional = false) for same purpose as @Column
     private String displayName;
 }
