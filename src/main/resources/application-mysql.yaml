@@ -24,14 +24,14 @@ spring:
         format_sql: true
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/orderservicedb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/wordpressdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: orderuser
+    username: wpuser
     password: password
 
   flyway:
     enabled: true
-    user: orderadmin
+    user: wpadmin
     password: password
 
 management:
