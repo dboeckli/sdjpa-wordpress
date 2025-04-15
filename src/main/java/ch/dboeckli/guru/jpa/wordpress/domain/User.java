@@ -21,28 +21,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_login")
+    @Column(name = "user_login", length = 60)
     @NotNull
     @Size(max = 60)
     private String login;
 
-    @Column(name = "user_pass")
+    @Column(name = "user_pass", length = 255)
     @NotNull
     @Size(max = 255)
     private String password;
 
-    @Column(name = "user_nicename")
+    @Column(name = "user_nicename", length = 50)
     @NotNull
     @Size(max = 50)
     private String nicename;
 
-    @Column(name = "user_email")
+    @Column(name = "user_email", length = 100)
     @Email
     @NotNull
     @Size(max = 100)
     private String email;
 
-    @Column(name = "user_url")
+    @Column(name = "user_url", length = 100)
     @URL
     @NotNull
     @Size(max = 100)
@@ -52,7 +52,7 @@ public class User {
     @NotNull
     private Timestamp registered;
 
-    @Column(name = "user_activation_key")
+    @Column(name = "user_activation_key", length = 255)
     @NotNull
     @Size(max = 255)
     private String activationKey;
@@ -61,7 +61,7 @@ public class User {
     @NotNull
     private Integer status;
 
-    @Column(name = "display_name", nullable = false)
+    @Column(name = "display_name", nullable = false, length = 255)
     // or @Basic(optional = false) for same purpose as @Column
     @NotNull
     @Size(max = 255)
