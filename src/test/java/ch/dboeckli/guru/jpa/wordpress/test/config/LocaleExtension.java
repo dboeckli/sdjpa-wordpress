@@ -1,4 +1,4 @@
-package ch.dboeckli.guru.jpa.orderservice.test.config;
+package ch.dboeckli.guru.jpa.wordpress.test.config;
 
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;

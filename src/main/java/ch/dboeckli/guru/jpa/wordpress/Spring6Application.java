@@ -1,4 +1,4 @@
-package ch.dboeckli.guru.jpa.orderservice;
+package ch.dboeckli.guru.jpa.wordpress;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
