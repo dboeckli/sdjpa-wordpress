@@ -2,6 +2,17 @@
 
 This repository contains source code examples to support my course Spring Data JPA and Hibernate Beginner to Guru
 
+## JPA Legacy Database Mapping
+
+This project demonstrates JPA legacy database mapping using the WordPress database schema. We're using Spring Data JPA to map and interact with an existing WordPress database structure, showcasing how to work with legacy databases in modern Java applications.
+
+Key features of this demonstration include:
+
+1. Mapping WordPress tables to JPA entities
+2. Handling WordPress-specific data types and relationships
+3. Implementing custom queries for WordPress data structures
+4. Demonstrating how to work with legacy database schemas without modifying the original structure
+
 ## Additional Resources
 
 For more information about transactions in database systems and Spring Data JPA, please refer to the following documents in the `doc` folder:
