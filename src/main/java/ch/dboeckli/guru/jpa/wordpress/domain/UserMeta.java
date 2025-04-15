@@ -1,6 +1,7 @@
 package ch.dboeckli.guru.jpa.wordpress.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,7 +17,10 @@ public class UserMeta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "umeta_id")
     private Long id;
+
     private Long userId;
+
+    @Size(max = 255)
     private String metaKey;
 
     @Lob
