@@ -2,6 +2,20 @@
 -- SELECT 1;
 -- WordPress schema for H2 database
 
+-- Drop existing tables if they exist
+DROP TABLE IF EXISTS wp_commentmeta;
+DROP TABLE IF EXISTS wp_comments;
+DROP TABLE IF EXISTS wp_links;
+DROP TABLE IF EXISTS wp_options;
+DROP TABLE IF EXISTS wp_postmeta;
+DROP TABLE IF EXISTS wp_posts;
+DROP TABLE IF EXISTS wp_term_relationships;
+DROP TABLE IF EXISTS wp_term_taxonomy;
+DROP TABLE IF EXISTS wp_termmeta;
+DROP TABLE IF EXISTS wp_terms;
+DROP TABLE IF EXISTS wp_usermeta;
+DROP TABLE IF EXISTS wp_users;
+
 -- Table structure for wp_commentmeta
 CREATE TABLE IF NOT EXISTS wp_commentmeta (
                                               meta_id BIGINT AUTO_INCREMENT PRIMARY KEY,
