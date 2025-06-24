@@ -14,7 +14,7 @@ spec:
       command: [ '/bin/sh', '-c' ]
       args:
         - |
-          echo "### Test: MySQL Connection using service name: {{ include "sdjpa-wordpress-mysql.fullname" . }}"
+          echo "### Test 1: MySQL Connection using service name: {{ include "sdjpa-wordpress-mysql.fullname" . }}"
           mysql -h{{ include "sdjpa-wordpress-mysql.fullname" . }} \
                 -P{{ .Values.mysql.port }} \
                 -u$MYSQL_USER \
@@ -22,7 +22,7 @@ spec:
                 -e "SELECT 1; SELECT DATABASE();"
           echo "Exit code: $?"
 
-          echo "### Test: MySQL Root Connection"
+          echo "### Test 2: MySQL Root Connection"
           mysql -h{{ include "sdjpa-wordpress-mysql.fullname" . }} \
                 -P{{ .Values.mysql.port }} \
                 -uroot \
