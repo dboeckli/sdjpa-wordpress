@@ -19,6 +19,7 @@ spec:
                 -P{{ .Values.mysql.port }} \
                 -u$MYSQL_USER \
                 -p$MYSQL_PASSWORD \
+                --database={{ .Values.mysql.database }} \
                 -e "SELECT 1; SELECT DATABASE();"
           echo "Exit code: $?"
 
@@ -27,6 +28,7 @@ spec:
                 -P{{ .Values.mysql.port }} \
                 -u$MYSQL_ADMIN_USER \
                 -p$MYSQL_ADMIN_PASSWORD \
+                --database={{ .Values.mysql.database }} \
                 -e "SELECT 1; SELECT DATABASE();"
           echo "Exit code: $?"
 
