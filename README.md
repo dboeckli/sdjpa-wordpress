@@ -111,6 +111,16 @@ uninstall
 helm uninstall $APPLICATION_NAME  --namespace sdjpa-wordpress
 ```
 
+delete all
+```powershell
+kubectl delete all --all -n sdjpa-wordpress
+```
+
+create busybox sidecar
+```powershell
+kubectl run busybox-test --rm -it --image=busybox:1.36 --namespace=sdjpa-wordpress --command -- sh
+```
+
 ## Running the Application
 1. Choose between h2 or mysql for database schema management. (you can use one of the preconfigured intellij runners)
 2. Start the application with the appropriate profile and properties.
