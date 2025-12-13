@@ -57,27 +57,10 @@ management:
 
 logging:
   level:
-    org.zalando.logbook: TRACE
     org.hibernate.orm.jdbc.bind: INFO
     org.springframework.test.context.transaction: DEBUG
     org.springframework.transaction: DEBUG
     org.hibernate.SQL: INFO
-
-logbook:
-  filter:
-    enabled: true
-  format:
-    style: http
-  obfuscate:
-    headers:
-      - Authorization
-      - X-Secret
-    parameters:
-      - access_token
-      - password
-  predicate:
-    exclude:
-      - path: /actuator/health/**
 
 server:
   port: 8080
