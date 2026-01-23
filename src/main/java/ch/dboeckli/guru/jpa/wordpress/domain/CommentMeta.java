@@ -21,7 +21,7 @@ public class CommentMeta {
     @Column(name = "meta_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "comment_id")
     private Comment comment;
 
