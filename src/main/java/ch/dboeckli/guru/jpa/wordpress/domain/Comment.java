@@ -97,7 +97,7 @@ public class Comment {
     @ToString.Exclude
     private Set<CommentMeta> commentMetaSet;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private User user;
 }
