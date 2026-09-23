@@ -13,24 +13,18 @@ Key features of this demonstration include:
 3. Implementing custom queries for WordPress data structures
 4. Demonstrating how to work with legacy database schemas without modifying the original structure
 
-## Additional Resources
-
-For more information about transactions in database systems and Spring Data JPA, please refer to the following documents in the `doc` folder:
-
-- [Overview of DB Transactions](doc/OverviewOfDBTransactions.pdf): This document provides a comprehensive overview of database transactions.
-- [Spring Data JPA Transactions](doc/SpringDataJPATransactions.pdf): This guide offers insights into how transactions work specifically with Spring Data JPA.
-
 ## Flyway
 
-To enable Flyway in the MySQL profile, override the following properties when starting the application:
-- `spring.flyway.enabled = true`
-- `spring.docker.compose.file = compose-mysql.yaml`
-
-This profile starts MySQL on port 3306 using the Docker Compose file `compose-mysql-.yaml`.
+The `mysql` profile enables Flyway out of the box (`application-mysql.yaml` also sets
+`spring.docker.compose.file: compose-mysql.yaml`), so no property overrides are needed. This profile
+starts MySQL on port 3306 using the Docker Compose file `compose-mysql.yaml`. The migrations live in
+`src/main/resources/db/migration`. In the `h2` profile Flyway is disabled and the schema is created
+via `h2-schema.sql` / `h2-data.sql`.
 
 ## Docker
 
-Docker Compose file initially use the startup script located in `src/scripts`. These scripts create the database and users.
+The Docker Compose file mounts the init script `src/scripts/init-mysql.sql`, which creates the
+database and the users `wpadmin`/`wpuser`.
 
 ### Deployment with Helm
 
