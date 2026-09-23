@@ -1,17 +1,100 @@
 # Spring Data JPA Wordpress
 
-This repository contains source code examples to support my course Spring Data JPA and Hibernate Beginner to Guru
+Spring Boot 4 / Spring Data JPA demo project on Java 25, demonstrating JPA legacy database
+mapping of the WordPress schema: the entities `Comment`, `CommentMeta`, `User` and `UserMeta`
+map to the existing WordPress tables without modifying the original schema, against H2
+(MySQL-compat mode) and MySQL, with schema management via Flyway.
 
-## JPA Legacy Database Mapping
+## Architecture Overview
 
-This project demonstrates JPA legacy database mapping using the WordPress database schema. We're using Spring Data JPA to map and interact with an existing WordPress database structure, showcasing how to work with legacy databases in modern Java applications.
+```mermaid
+graph LR
+    Client(["Client"])
 
-Key features of this demonstration include:
+    subgraph App ["Spring Boot App :8080"]
+        Actuator["Actuator\nhealth / info / metrics"]
+        Entities["JPA Entities\nHibernate (ddl-auto: validate)"]
+    end
 
-1. Mapping WordPress tables to JPA entities
-2. Handling WordPress-specific data types and relationships
-3. Implementing custom queries for WordPress data structures
-4. Demonstrating how to work with legacy database schemas without modifying the original structure
+    subgraph Domain ["Domain Model (WordPress legacy tables)"]
+        Comment["Comment\nwp_comments"]
+        CommentMeta["CommentMeta\nwp_commentmeta"]
+        User["User\nwp_users"]
+        UserMeta["UserMeta\nwp_usermeta"]
+    end
+
+    subgraph Migration ["Schema Management"]
+        Flyway["Flyway\ndb/migration"]
+    end
+
+    subgraph Databases ["Databases"]
+        H2[("H2\nIn-Memory")]
+        MySQL[("MySQL\nDocker")]
+    end
+
+    Client -->|"actuator :8080"| App
+    Entities --> Domain
+    Entities <--> H2
+    Entities <--> MySQL
+    Flyway --> MySQL
+```
+
+## Database Schema
+
+Only a subset of the WordPress schema is mapped as JPA entities (the remaining legacy tables such as
+`wp_posts` or `wp_options` stay untouched):
+
+```mermaid
+erDiagram
+    wp_comments {
+        BIGINT       comment_ID PK "auto_increment"
+        BIGINT       comment_post_ID "references wp_posts.ID (not mapped)"
+        TINYTEXT     comment_author
+        VARCHAR(100) comment_author_email
+        VARCHAR(200) comment_author_url
+        VARCHAR(100) comment_author_IP
+        DATETIME     comment_date
+        DATETIME     comment_date_gmt
+        TEXT         comment_content
+        INT          comment_karma
+        VARCHAR(20)  comment_approved
+        VARCHAR(255) comment_agent
+        VARCHAR(20)  comment_type
+        BIGINT       comment_parent
+        BIGINT       user_id
+    }
+
+    wp_commentmeta {
+        BIGINT       meta_id PK "auto_increment"
+        BIGINT       comment_id
+        VARCHAR(255) meta_key
+        LONGTEXT     meta_value
+    }
+
+    wp_users {
+        BIGINT       ID PK "auto_increment"
+        VARCHAR(60)  user_login
+        VARCHAR(255) user_pass
+        VARCHAR(50)  user_nicename
+        VARCHAR(100) user_email
+        VARCHAR(100) user_url
+        DATETIME     user_registered
+        VARCHAR(255) user_activation_key
+        INT          user_status
+        VARCHAR(250) display_name
+    }
+
+    wp_usermeta {
+        BIGINT       umeta_id PK "auto_increment"
+        BIGINT       user_id
+        VARCHAR(255) meta_key
+        LONGTEXT     meta_value
+    }
+
+    wp_comments ||--o{ wp_commentmeta : "comment_id"
+    wp_users ||--o{ wp_comments : "user_id"
+    wp_users ||--o{ wp_usermeta : "user_id"
+```
 
 ## Flyway
 
