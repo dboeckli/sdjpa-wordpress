@@ -7,10 +7,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "wp_commentmeta", indexes = {
-    @Index(name = "comment_id", columnList = "comment_id"),
-    @Index(name = "meta_key", columnList = "meta_key")
-})
+@Table(name = "wp_commentmeta",
+        indexes = { @Index(name = "comment_id", columnList = "comment_id"),
+                @Index(name = "meta_key", columnList = "meta_key") })
 @Getter
 @Setter
 @ToString
