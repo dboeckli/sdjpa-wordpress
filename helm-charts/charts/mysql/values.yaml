@@ -1,5 +1,5 @@
 global:
-  namespace: sdjpa-wordpress-mysql
+  namespace: sdjpa-wordpress
 
 mysql:
   port: 3306
@@ -18,5 +18,5 @@ mysql:
 
 mysqlImage:
   repository: mysql
-  tag: "26.7.0"
+  tag: "8.4.11"
   pullPolicy: IfNotPresent

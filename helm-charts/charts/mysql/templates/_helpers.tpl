@@ -49,11 +49,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "sdjpa-wordpress-mysql.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
-{{/*
-Create the FQDN for the service
-*/}}
-{{- define "sdjpa-wordpress-mysql.serviceFQDN" -}}
-{{- $fullname := include "sdjpa-wordpress-mysql.fullname" . -}}
-{{- printf "%s.%s.svc.cluster.local" $fullname .Release.Namespace }}
-{{- end }}

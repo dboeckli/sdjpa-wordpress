@@ -13,14 +13,12 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
-@Table(name = "wp_comments", indexes = {
-    @Index(name = "comment_post_ID", columnList = "comment_post_ID"),
-    @Index(name = "comment_approved_date_gmt",
-        columnList = "comment_approved, comment_date_gmt"),
-    @Index(name = "comment_date_gmt", columnList = "comment_date_gmt"),
-    @Index(name = "comment_parent", columnList = "comment_parent"),
-    @Index(name = "comment_author_email", columnList = "comment_author_email")
-})
+@Table(name = "wp_comments",
+        indexes = { @Index(name = "comment_post_ID", columnList = "comment_post_ID"),
+                @Index(name = "comment_approved_date_gmt", columnList = "comment_approved, comment_date_gmt"),
+                @Index(name = "comment_date_gmt", columnList = "comment_date_gmt"),
+                @Index(name = "comment_parent", columnList = "comment_parent"),
+                @Index(name = "comment_author_email", columnList = "comment_author_email") })
 @Getter
 @Setter
 @ToString
@@ -31,14 +29,14 @@ public class Comment {
     @Column(name = "comment_ID")
     private Long id;
 
-    @NotNull  //todo - convert when post is mapped
+    @NotNull // todo - convert when post is mapped
     @Column(name = "comment_post_ID")
     private Long postId;
 
     @NotNull
     @Size(max = 255)
     @Column(name = "comment_author", columnDefinition = "tinytext")
-    //@Column(name = "comment_author", length = 255)
+    // @Column(name = "comment_author", length = 255)
     private String author;
 
     @NotNull
@@ -100,4 +98,5 @@ public class Comment {
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private User user;
+
 }

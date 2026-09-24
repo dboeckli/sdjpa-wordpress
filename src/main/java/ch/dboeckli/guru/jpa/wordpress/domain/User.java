@@ -13,15 +13,26 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
-@Table(name = "wp_users", indexes = {
-    @Index(name = "user_login_key", columnList = "user_login"),
-    @Index(name = "user_nicename", columnList = "user_nicename"),
-    @Index(name = "user_email", columnList = "user_email")
-}) // hibernate would automatically create indexes for these columns, if hibernae is configured to generate the schema definitions
+@Table(name = "wp_users",
+        indexes = { @Index(name = "user_login_key", columnList = "user_login"),
+                @Index(name = "user_nicename", columnList = "user_nicename"),
+                @Index(name = "user_email", columnList = "user_email") }) // hibernate
+                                                                          // would
+                                                                          // automatically
+                                                                          // create
+                                                                          // indexes for
+                                                                          // these
+                                                                          // columns, if
+                                                                          // hibernae is
+                                                                          // configured to
+                                                                          // generate the
+                                                                          // schema
+                                                                          // definitions
 @Getter
 @Setter
 @ToString
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -80,4 +91,5 @@ public class User {
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
     private Set<Comment> comments;
+
 }
