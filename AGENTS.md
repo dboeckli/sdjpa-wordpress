@@ -58,8 +58,8 @@ is needed here. On a normal host (Windows/CI) this does not apply either.
   `UserMeta`); there is deliberately no `repository/`, `service/`, `ui/` or `bootstrap/` package.
 - Schema migrations: `src/main/resources/db/migration` (Flyway only,
   `V1__init_wordpress_database.sql`); `src/scripts/init-mysql.sql` seeds DB/users for Docker.
-- `log/` (`LogMessage`, `ConfigChangeListener`) + `config/RequestLoggingConfig` for contextual
-  logging/request tracing.
+- `config/RequestLoggingConfig`/`RequestLoggingFilter` for request logging (segment-exact
+  `appconfig.request-logging.exclude-paths`, switchable via `appconfig.request-logging.enabled`).
 
 ## Deploy / CI
 
